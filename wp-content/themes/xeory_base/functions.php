@@ -24,11 +24,10 @@ require_once('lib/functions/rss.php');
 //======================================================================
 // Custom
 //======================================================================
-function load_stylesheet() {
-  wp_enqueue_style('custom_style', get_bloginfo('template_directory').'/dist/css/app.css', array(), null, 'all');
+function load() {
+  wp_enqueue_style('custom_app_style', get_bloginfo('template_directory').'/dist/css/app.css', array(), null, 'all');
+  wp_enqueue_style('custom_prism_style', get_bloginfo('template_directory').'/lib/css/prism.css', array(), null, 'all');
+  wp_enqueue_script( 'custom_app_scripts', get_bloginfo( 'template_directory') . '/dist/js/main.js', array(), false, 'true' );
+  wp_enqueue_script( 'custom_prism_scripts', get_bloginfo( 'template_directory') . '/lib/js/prism.js', array(), false, 'true' );
 }
-function load_scripts() {
-  wp_enqueue_script( 'custom_scripts', get_bloginfo( 'template_directory') . '/dist/js/main.js', array(), false, 'true' );
-}
-add_action('wp_enqueue_scripts', 'load_stylesheet');
-add_action('wp_enqueue_scripts', 'load_scripts');
+add_action('wp_enqueue_scripts', 'load');
